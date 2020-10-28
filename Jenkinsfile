@@ -1,10 +1,28 @@
 pipeline {
-    agent { docker { image 'maven:3.6.3' } }
+    agent any
+    tools {
+        maven 'maven'
+        jdk 'jdk11'
+    }
+    parameters {
+        booleanParam(name: "Perform release ?", description: '', defaultValue: false)
+    }
     stages {
-        stage('build') {
+        stage('Initialize') {
             steps {
-                sh 'mvn --version'
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
             }
         }
-    }
-}
+        stage('Build') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }}}
