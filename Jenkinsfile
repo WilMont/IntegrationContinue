@@ -12,7 +12,6 @@ pipeline {
             steps {
                 sh '''
                     echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
                 '''
             }
         }
@@ -25,4 +24,6 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
-        }}}
+        }
+        }
+        }
