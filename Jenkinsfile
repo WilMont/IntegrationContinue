@@ -25,5 +25,9 @@ pipeline {
                 bat 'mvn test'
             }
         }
+        stage('Deploy') {​​​​
+            steps {​​​​
+                bat 'mvn  -s C:/Users/bobra/.m2/settings.xml deploy'
+            }​​​​
         }
         }
